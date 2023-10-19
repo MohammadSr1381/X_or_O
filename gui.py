@@ -19,8 +19,8 @@ class Gui :
    
     def flag_situation(self):
         
-        flag_frame = pandas.read_csv("dataset.csv")
-        if flag_frame.empty():
+        flag_frame = pandas.read_csv("dataset.csv") 
+        if flag_frame.empty:
             pass
         else :
             self.flag = True
