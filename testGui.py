@@ -11,7 +11,7 @@ class TestGui :
         self.window.title("test new data")
         self.window.configure(bg="honeydew2")
         self.window.geometry("600x400")
-        self.button_states = [[-1 for _ in range(5)] for _ in range(5)]
+        self.button_states = [[0 for _ in range(5)] for _ in range(5)]
         self.needed_elements()
         self.pattern_creation()
         self.window.mainloop()
@@ -56,7 +56,7 @@ class TestGui :
                 button_click = tk.Button(pattern_frame , bg="black")
                 button_click.grid(column=j , row=i , padx=10 , pady=10)
                 button_row.append(button_click)
-                button_states_row.append(-1)
+                button_states_row.append(0)
                 button_click.config(command=lambda btn=button_click, r=i, c=j: self.toggle_button(btn, r, c))
             self.buttons.append(button_row)
             self.button_states.append(button_states_row)
@@ -70,14 +70,12 @@ class TestGui :
             self.button_states[row][col] = 1 
         else:
             button["bg"] = "black"
-            self.button_states[row][col] = -1  
+            self.button_states[row][col] = 0  
             
                 
                 
     def save(self):
 
-        
-        
         test_list = self.button_states
         network = HebbNetwork()
         test = network.classify(test_list)
@@ -95,6 +93,6 @@ class TestGui :
         for i in range(len(self.button_states)):
             for j in range(len(self.button_states[i])):
                     
-                    self.button_states[i][j] = -1
+                    self.button_states[i][j] = 0
                     self.buttons[i][j].config(bg = "black")
              

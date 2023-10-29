@@ -18,12 +18,18 @@ class Gui :
    
     def flag_situation(self):
         
-        flag_frame = pandas.read_csv("dataset.csv") 
-        if flag_frame.empty:
-            pass
-        else :
-            self.flag = True
-        
+       
+        try:
+            flag_frame = pandas.read_csv("dataset.csv") 
+            if flag_frame.empty:
+                pass
+            else :
+                self.flag = True
+        except :
+            flag = False
+            
+            
+            
     def needed_elements(self):
         
         frame = tk.Frame(self.window, padx=30, pady=30)
@@ -86,14 +92,12 @@ class Gui :
 
         dataset_dic ={"label" : 1 , "data" : self.button_states}
         data_frame = pandas.DataFrame([dataset_dic])  
-        print(dataset_dic)
         
         if not self.flag : 
             data_frame = data_frame.to_csv("dataset.csv" , index=False , mode="w") 
             self.flag = True 
         else :
             data_frame = data_frame.to_csv("dataset.csv" , index=False , header=False , mode="a")
-        print(self.button_states)
     
         for i in range(len(self.button_states)):
             for j in range(len(self.button_states[i])):
@@ -107,14 +111,12 @@ class Gui :
         
         dataset_dic ={"label" : -1 , "data" : self.button_states}
         data_frame = pandas.DataFrame([dataset_dic])  
-        print(dataset_dic)
         
         if not self.flag : 
             data_frame = data_frame.to_csv("dataset.csv" , index=False , mode="w") 
             self.flag = True 
         else :
             data_frame = data_frame.to_csv("dataset.csv" , index=False , header=False , mode="a")
-        print(self.button_states)
     
         for i in range(len(self.button_states)):
             for j in range(len(self.button_states[i])):
